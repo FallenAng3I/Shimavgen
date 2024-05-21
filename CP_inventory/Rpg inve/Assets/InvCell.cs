@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class InvCell : MonoBehaviour, IDragHandler,IBeginDragHandler,IEndDragHandler,IPointerEnterHandler,IPointerExitHandler
 {
+    public unfo _Unfo;
     public Item curritem;
     public Image Image;
     public bool IsDag;
@@ -87,7 +88,10 @@ public class InvCell : MonoBehaviour, IDragHandler,IBeginDragHandler,IEndDragHan
         {
             // Отображение информации о предмете, например, всплывающего окна с названием и описанием предмета
             Debug.Log("Название: " + curritem.Name + ", Описание: " + curritem.Description);
+            _Unfo.ShowItemInfo(curritem);
         }
+
+        
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -95,5 +99,7 @@ public class InvCell : MonoBehaviour, IDragHandler,IBeginDragHandler,IEndDragHan
         isEnd = false;
         InvManag.Instance.EnteredCell = null;
         Debug.Log("Скрыть информацию о предмете");
+        _Unfo.HideItemInfo();
     }
+    
 }
